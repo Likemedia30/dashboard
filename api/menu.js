@@ -1,34 +1,42 @@
 const Menu = [
   {header: 'Apps'},
   {
-    title: 'Dashboard',
+    title: 'Control Panel',
     group: 'apps',
     icon: 'dashboard',
     name: 'Dashboard',
     href: '/dashboard'
   },
   {
-    title: 'Chat',
+    title: 'Product Categories',
     group: 'apps',
-    icon: 'chat_bubble',
-    target: '_blank',
-    name: 'Chat',
-    href: '/chat/messaging'
+    icon: 'list',
+    target: 'blank',
+    name: 'Categories',
+    href: '/categories'
   },
   {
-    title: 'Inbox',
-    group: 'apps',
-    name: 'Mail',
-    target: '_blank',
-    icon: 'email',
-    href: '/mail/all'
+    title: 'Google API',
+    group: 'googleApi',
+    name: 'Google API',
+    target: 'blank',
+    icon: 'multiline_chart',
+    items: [
+      {name: 'sheets', title: 'Google Sheets', href: '/google-api/sheets'},
+      {name: 'content', title: 'API Content', badge: 'new', href: '/google-api/content'},
+      {name: 'ads', title: 'Google Ads', href: '/google-api/ads'},
+    ]
   },
   {
-    title: 'Media',
-    group: 'apps',
-    name: 'Media',
-    icon: 'perm_media',
-    href: '/media'
+    title: 'VCRM',
+    group: 'vcrm',
+    name: 'VCRM',
+    icon: 'supervised_user_circle',
+    items: [
+      {name: 'dashboard', title: 'Dashboard', href: '/vcrm/dashboard'},
+      {name: 'cr-managers', title: 'CR Managers', href: '/vcrm/cr-managers'},
+      {name: 'ads', title: 'Google Ads', href: '/google-api/ads'},
+    ]
   },
   {
     title: 'Widgets',
@@ -127,6 +135,13 @@ const Menu = [
     href: '/empty'
   },
 ];
+
+const NewMenu = [
+      {name: 'dashboard', title: 'Dashboard', href: '/dashboard'},
+      {name: 'cr-managers', title: 'CR Managers', href: '/cr-managers'},
+      {name: 'stats', title: 'Stats and Reports', href: '/stats'},
+      {name: 'manager-one', title: 'Manager One', href: '/manager-one'},
+]
 // reorder menu
 Menu.forEach((item) => {
   if (item.items) {
@@ -138,4 +153,14 @@ Menu.forEach((item) => {
   }
 });
 
-export default Menu;
+NewMenu.forEach((item) => {
+  if (item.items) {
+    item.items.sort((x, y) => {
+      let textA = x.title.toUpperCase();
+      let textB = y.title.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+  }
+});
+
+export default NewMenu;
